@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<style>
+body { font-family: Arial; }
+li { margin: 5px 0; }
+input { margin-bottom: 10px; }
+</style>
+
+<h1>Lista de Posts</h1>
+
+<input type="text" id="buscador" placeholder="Buscar...">
+
+<button id="cargar">Cargar Datos</button>
+
+<ul id="lista"></ul>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+
+<script>
+
+ let postsGlobal = [];
+
+ $('#cargar').click(function() {
+
+$.get('https://jsonplaceholder.typicode.com/posts', function(data) {
+
+postsGlobal = data;
+mostrarPosts(data);
+
+});
+
+});
+
+$('#buscador').on('input', function() {
+
+let texto = $(this).val().toLowerCase();
+
+let filtrados = postsGlobal.filter(p =>
+p.title.toLowerCase().includes(texto)
+);
+
+mostrarPosts(filtrados);
+});
+
+function mostrarPosts(posts) {
+
+$('#lista').html('');
+
+posts.forEach(post => {
+$('#lista').append(`<li>${post.title}</li>`);
+});
+
+}
+</script>
+
+
+</body>
+</html>

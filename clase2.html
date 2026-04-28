@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+<h1>Eventos</h1>
+<ul id="lista"></ul>
+
+
+
+
+
+<script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.slim.min.js"></script>
+
+    <script>
+let eventos = [
+{titulo: "JS", cupo:10},
+{titulo: "Symfony", cupo:0}
+];
+
+eventos.forEach(e => {
+$('#lista').append(`<li>${e.titulo} - Cupo: ${e.cupo}</li>`)
+
+});
+
+
+eventos.forEach(e => {
+if (e.cupo > 0) {
+$('#lista').append(`<li>Eventos disponibles: ${e.titulo}:${e.cupo}</li>`);
+}
+});
+
+
+
+
+function obtenerEventos() {
+            return [
+            {id:1, titulo:"Backend"}, 
+            {id:2, titulo:"Frontend"}];
+        }
+
+       
+        $(document).ready(function() {
+            let eventos = obtenerEventos();
+            eventos.forEach(e => {
+                $('#lista').append(`<li>${e.titulo}</li>`);
+            });
+        });
+
+
+</script>
+</body>
+</html>
