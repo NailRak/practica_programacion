@@ -19,12 +19,13 @@ input { margin-bottom: 10px; }
 
 <button id="cargar">Cargar Datos</button>
 
+<button id="limpiar">Limpiar lista</button>
+
 <ul id="lista"></ul>
 
 
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-
 
 <script>
 
@@ -32,7 +33,7 @@ input { margin-bottom: 10px; }
 
  $('#cargar').click(function() {
 
-$.get('https://jsonplaceholder.typicode.com/posts', function(data) {
+$.get('https://dummyjson.com/products', function(data) {
 
 postsGlobal = data;
 mostrarPosts(data);
@@ -49,19 +50,38 @@ let filtrados = postsGlobal.filter(p =>
 p.title.toLowerCase().includes(texto)
 );
 
+
+
 mostrarPosts(filtrados);
 });
+
+$('#limpiar').click(function() {
+  $('#lista').html('');   
+  $('#buscador').val('');  
+});
+
 
 function mostrarPosts(posts) {
 
 $('#lista').html('');
 
-posts.forEach(post => {
-$('#lista').append(`<li>${post.title}</li>`);
+//let primerosDiez = posts.slice(0, 10);
+//console.log(posts.products[0]);
+posts.products.forEach(post => {
+ $('#lista').append(`<li>${post.title} - $${post.price}</li>`);
 });
+
+ 
+
+  //primerosDiez.forEach(post => {
+   // $('#lista').append(`<li>${post.id} - ${post.title}</li>`);
+  //});
+
 
 }
 </script>
+
+
 
 
 </body>
